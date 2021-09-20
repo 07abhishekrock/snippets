@@ -1,0 +1,72 @@
+@use './variables' as variables;
+i.icon{
+    width:1em;
+    display:inline-block;
+    height:1em;
+    background-size:contain;
+    background-position:center;
+    background-repeat:no-repeat;
+    &[round="1"]{
+        border-radius:50%;
+    }
+}
+
+.animate.fallback{
+    position:relative;
+    overflow:hidden;
+    &::after{
+        content:"";
+        position:absolute;
+        width:2px;
+        left:0px;
+        top:0px;
+        height:100%;
+        width:100%;
+        background-color:#f7f7f7;
+        clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+        animation:fallback_animation 1.5s ease-in infinite;
+    }
+    @keyframes fallback_animation{
+        0%{
+            transform:translateX(-200%);
+        }
+        50%{
+            transform:translateX(200%);
+        }
+        100%{
+            transform:translateX(-200%);
+        }
+    }
+}
+
+.content-editable-div{
+    min-height:100px;
+    display:block;
+    background-color:white;
+    border:2px solid variables.$input_border;
+    border-radius:0.3em;
+    padding:0.5em;
+    width:100%;
+    box-sizing: border-box;
+    position:relative;
+    &>*{
+        position:relative;
+        z-index:1;
+    }
+    &:focus{
+        border-color:darkgray;
+        outline:none;
+    }
+    &:not(:empty){
+        &::after{
+            content: none;
+        }
+    }
+    &::after{
+        content:attr(placeholder);
+        color:gray;
+        position:absolute;
+        top:0.5em;
+        left:0.5em;
+    }
+}

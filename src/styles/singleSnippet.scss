@@ -1,0 +1,75 @@
+@use './variables' as variables;
+a.single-snippet-thumb{
+    border:2px solid variables.$input_border;
+    padding:1em;
+    box-sizing: border-box;
+    border-radius:0.3em;
+    text-decoration:none;
+    color:variables.$black_color;
+    &.fallback{
+        &>*{
+            border-radius:0.2em;
+        }
+        &>h3{
+            width:80%;
+            height:1.5em;
+            background-color:#f3f3f3;
+        }
+        &>p{
+            width:100%;
+            height:50px;
+            background-color:#f3f3f3;
+        }
+        &>div{
+            &>span{
+                height:1.4em;
+                background-color:#f3f3f3;
+                width:30%;
+                display:inline-block;
+            }
+        }
+    }
+    &.center{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-flow:column;
+        color:gray;
+        gap:1em;
+        &>svg{
+            font-size:3em;
+        }
+        &>h1{
+            margin:0px;
+            font-weight:500;
+        }
+    }
+    &>h3{
+        margin:0px;
+        font-weight:550;
+    }
+    &>div.snippet-bottom{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        font-size:0.8em;
+        &>span{
+            background-color:variables.$primary_color;
+            color:white;
+            padding:0.3em 0.5em;
+            font-weight:550;
+            border-radius:0.2em;
+        }
+        &>div.snippet-tags{
+            & a{
+                color:inherit;
+                text-decoration:none;
+                margin:0px 0.2em;
+                font-weight:500;
+                background-color:variables.$input_bg;
+                padding:0.3em 0.8em;
+                font-size:0.9em;
+            }
+        }
+    }
+}

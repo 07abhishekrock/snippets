@@ -1,0 +1,6 @@
+@use './variables' as variables;
+@use './misc' as misc;
+
+*{
+    font-family:variables.$main_font;
+}

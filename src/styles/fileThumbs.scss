@@ -1,0 +1,48 @@
+@use './variables' as variables;
+
+div.file-thumb{
+    border:2px solid variables.$form_border;
+    border-radius:0.3em;
+    background-color:white;
+    margin-right:1em;
+    display:flex;
+    align-items:center;
+    padding:0.5em 0.8em;
+    &:last-child{
+        margin-right:0px;
+    }
+    &>i.icon{
+        font-size:1em;
+        margin-right:0.8em;
+    }
+    &.empty{
+        display:flex;
+        align-items:center;
+        justify-content: center;
+        &>svg{
+            font-size:1.1em;
+            margin-right:0.5em;
+        }
+        &>h4{
+            font-weight:500;
+            margin:0px;
+            font-size:1.1em;
+        }
+    }
+    &>span{
+        display:block;
+        font-weight:500;
+    }
+    &>div.edit-options{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:#444;
+        margin-left:1em;
+        &>i{
+            &.delete{
+                color:variables.$primary_color;
+            }
+        }
+    }
+}

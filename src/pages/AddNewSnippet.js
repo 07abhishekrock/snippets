@@ -20,18 +20,18 @@ const form_nav_options = [
     }
 ]
 
-const renderFormBasedOnIndex = (index , form)=>{
+const renderFormBasedOnIndex = (index , form , goBack , goNext)=>{
     if(index === 0){
         return <div className="normal form">
-            <InputGroup type="text" label="Title" placeholder="Enter Title Here" form={form} name="title"/>
-            <InputGroup type="textarea" label="Description" placeholder="Describe Your Snippet Here" form={form} name="description"/>
-            <div className="form-button-group">
-                <button>Move Forward</button>
+                    <InputGroup type="text" label="Title" placeholder="Enter Title Here" form={form} name="title"/>
+                    <InputGroup type="textarea" label="Description" placeholder="Describe Your Snippet Here" form={form} name="description"/>
+                    <div className="form-button-group">
+                        <button onClick={goNext}>Move Forward</button>
+                    </div>
             </div>
-        </div>
     }
     else if(index === 1){
-        return <CreateVersion resetBtnText={"Reset"} resetCallback={()=>console.log('go back now')}/>;
+        return <CreateVersion resetBtnText={"Go Back"} resetCallback={goBack} version_form={form} submitCallback={goNext}/>;
     }
     return <div className="normal form">
         <FlexibleSearchCombo
@@ -85,8 +85,8 @@ const renderFormBasedOnIndex = (index , form)=>{
         }} 
         />
         <div className="form-button-group">
-            <button>Go Back</button>     
-            <button>Submit</button>
+            <button onClick={goBack}>Go Back</button>     
+            <button onClick={goNext}>Submit</button>
         </div>  
     </div>
 }
@@ -99,9 +99,32 @@ function AddNewSnippet() {
             description : '',
             versionCode : '',
             versionDesc : '',
-            codeItems : [],
-            imageItems : [],
-            linkItems : [],
+            codes : [
+                {
+                    lang : 'Javascript',
+                    data : <>
+                    <code>let a = 100;</code>
+                    <code>helloworld();</code>
+                    <code>//function is called here. </code>
+                    </>,
+                    id : '1234',
+                    name : 'index.js',
+                }
+            ],
+            images : [
+                {
+                    url : 'https://images.unsplash.com/photo-1496449903678-68ddcb189a24?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80',
+                    name : 'Random Sign',
+                    id : '1235'
+                }
+            ],
+            links : [
+                {
+                    url : 'https://www.google.com',
+                    name : 'Google Page',
+                    id : '1236'
+                }
+            ],
             tags : []
         },
         validationSchema : yup.object({
@@ -112,7 +135,11 @@ function AddNewSnippet() {
         <form className="add-new-snippet-page">
             <h1>Add A <i>New</i> Snippet</h1> 
             <FormBoxWithNavigation nav_options={form_nav_options} position={currentSelected} setPosition={setCurrentSelected}>
-                {renderFormBasedOnIndex(currentSelected , add_new_snippet_form)}
+                {renderFormBasedOnIndex(currentSelected , add_new_snippet_form , ()=>{
+                    setCurrentSelected(currentSelected - 1); 
+                }, ()=>{
+                    setCurrentSelected(currentSelected + 1)
+                })}
             </FormBoxWithNavigation>
         </form>
     )

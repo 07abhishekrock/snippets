@@ -1,0 +1,41 @@
+@use './variables' as variables;
+
+div.modal-wrapper{
+    position:fixed;
+    z-index:10;
+    overflow:auto;
+    inset:0px;
+    background-color:rgba(0,0,0,0.7);
+    display:grid;
+    place-items:center;
+    animation:fade_in 0.2s ease-in both 1;
+    &>div.modal{
+        width:600px;
+        max-width:95%;
+        box-shadow:0px 0px 25px 5px rgba(0,0,0,0.04);
+        border-radius:0.2em;
+        animation:jump_in 0.2s ease-in-out 0.2s 1 both;
+        background-color:white;
+        overflow:hidden;
+    }
+}
+
+@keyframes fade_in{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes jump_in{
+    from{
+        transform:translateY(50%);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0px);
+        opacity: 1;
+    }
+}

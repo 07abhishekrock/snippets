@@ -1,4 +1,15 @@
 @use './variables' as variables;
+form.add-new-snippet-page{
+    &>h1{
+        text-align:center;
+        margin:2em 0px;
+        margin-bottom:1em;
+        &>i{
+            color:variables.$primary_color;
+            font-style:normal;
+        }
+    }
+}
 form.corner-form{
     &>h2{
         font-size:2em;
@@ -82,6 +93,7 @@ div.form-box-with-navigation{
     margin:0 auto;
     width:fit-content;
     box-sizing: border-box;
+    margin-bottom:2em;
     &>div.form-nav{
         display:flex;
         justify-content:center;
